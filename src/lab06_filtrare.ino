@@ -89,7 +89,9 @@ void loop() {
       // MOD 0: semnal sinusoidal de pe A0
       int rawSig = analogRead(PIN_SIG_GEN);
       float vSig = (rawSig * 5.0f) / 1023.0f;
-      Serial.print("LimitaMin:0.0,LimitaMax:5.0,Semnal_Esantionat_V:");
+      // Serial Plotter din Tinkercad citeste doar numere separate prin virgula
+      // (nu accepta "Eticheta:valoare"). Coloane: LimitaMin, LimitaMax, Semnal_V
+      Serial.print("0.0,5.0,");
       Serial.println(vSig, 3);
     } else {
       // MOD 1: TMP36 + zgomot artificial
@@ -123,13 +125,14 @@ void loop() {
       rawPrev1 = noisyTemp;
       medEma = EMA_ALPHA * med + (1.0f - EMA_ALPHA) * medEma;
 
-      // Serial Plotter: mai multe curbe pe aceeasi linie
-      Serial.print("Brut:");        Serial.print(noisyTemp, 2); Serial.print(",");
-      Serial.print("MedieMobila:"); Serial.print(maOut, 2);     Serial.print(",");
-      Serial.print("FiltruEMA:");   Serial.print(emaValue, 2);  Serial.print(",");
-      Serial.print("EMA_Fast:");    Serial.print(emaFast, 2);   Serial.print(",");
-      Serial.print("EMA_Slow:");    Serial.print(emaSlow, 2);   Serial.print(",");
-      Serial.print("Median_EMA:");  Serial.println(medEma, 2);
+      // Serial Plotter: o linie = un esantion, valori separate prin virgula
+      // Coloane: Brut, MedieMobila, FiltruEMA, EMA_Fast, EMA_Slow, Median_EMA
+      Serial.print(noisyTemp, 2); Serial.print(",");
+      Serial.print(maOut, 2);     Serial.print(",");
+      Serial.print(emaValue, 2);  Serial.print(",");
+      Serial.print(emaFast, 2);   Serial.print(",");
+      Serial.print(emaSlow, 2);   Serial.print(",");
+      Serial.println(medEma, 2);
     }
   }
 }

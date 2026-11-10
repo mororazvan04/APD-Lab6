@@ -5,7 +5,11 @@ Banc de test în Tinkercad (`APD_Lab06_Esantionare_Filtrare`) cu două moduri, c
 - **Mod 0** (LED `D8` stins): eșantionează sinusoida de la Function Generator pe `A0` cu `fs = 20 Hz` (`Ts = 50 ms`).
 - **Mod 1** (LED `D8` aprins): citește TMP36 pe `A1`, adaugă zgomot artificial și afișează filtrele numerice în Serial Plotter.
 
-Codul complet: [`src/lab06_filtrare.ino`](src/lab06_filtrare.ino). În Mod 1, Serial Plotter afișează curbele:
+Codul complet: [`src/lab06_filtrare.ino`](src/lab06_filtrare.ino).
+
+> **Notă Tinkercad:** Serial Plotter-ul din Tinkercad nu înțelege formatul `Eticheta:valoare` (cel din Arduino IDE) și rămâne gol. De aceea programul trimite doar numere separate prin virgulă, în ordinea fixă din tabelele de mai jos.
+
+În Mod 0 coloanele sunt: `LimitaMin (0.0)`, `LimitaMax (5.0)`, `Semnal_V`. În Mod 1, Serial Plotter afișează curbele (în această ordine):
 
 | Curbă | Ce este |
 |---|---|
